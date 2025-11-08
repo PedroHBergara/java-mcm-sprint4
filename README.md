@@ -31,16 +31,16 @@ Essa separação permite **maior modularidade**, **escalabilidade** e **organiza
 ---
 |   Método   | Endpoint        | Descrição                                 | Exemplo de Requisição                                                                                     |
 | :--------: | :-------------- | :---------------------------------------- | :-------------------------------------------------------------------------------------------------------- |
-|   **GET**  | `/filiais`      | Lista todas as filiais cadastradas        | `GET http://localhost:8080/filiais`                                                                       |
-|   **GET**  | `/filiais/{id}` | Busca uma filial pelo ID                  | `GET http://localhost:8080/filiais/1`                                                                     |
-|  **POST**  | `/filiais`      | Cria uma nova filial                      | `POST http://localhost:8080/filiais`<br>Body:<br>`json { "nome": "Filial SP", "endereco": "Rua X, 100" }` |
-|   **PUT**  | `/filiais/{id}` | Atualiza uma filial existente             | `PUT http://localhost:8080/filiais/1`<br>Body:<br>`json { "nome": "Filial SP Atualizada" }`               |
-| **DELETE** | `/filiais/{id}` | Remove uma filial pelo ID                 | `DELETE http://localhost:8080/filiais/1`                                                                  |
-|   **GET**  | `/patios`       | Lista todos os pátios cadastrados         | `GET http://localhost:8080/patios`                                                                        |
-|   **GET**  | `/patios/{id}`  | Busca um pátio pelo ID                    | `GET http://localhost:8080/patios/1`                                                                      |
-|  **POST**  | `/patios`       | Cria um novo pátio vinculado a uma filial | `POST http://localhost:8080/patios`<br>Body:<br>`json { "nome": "Pátio Central", "filialId": 1 }`         |
-|   **PUT**  | `/patios/{id}`  | Atualiza informações de um pátio          | `PUT http://localhost:8080/patios/1`<br>Body:<br>`json { "nome": "Pátio Reformado" }`                     |
-| **DELETE** | `/patios/{id}`  | Remove um pátio pelo ID                   | `DELETE http://localhost:8080/patios/1`                                                                   |
+|   **GET**  | `/api/filiais`      | Lista todas as filiais cadastradas        | `GET http://localhost:8080/api/filiais`                                                                       |
+|   **GET**  | `/api/filiais/{id}` | Busca uma filial pelo ID                  | `GET http://localhost:8080/api/filiais/1`                                                                     |
+|  **POST**  | `/api/filiais`      | Cria uma nova filial                      | `POST http://localhost:8080/api/filiais`<br>Body:<br>`json { "nome": "Filial SP", "endereco": "Rua X, 100" }` |
+|   **PUT**  | `/api/filiais/{id}` | Atualiza uma filial existente             | `PUT http://localhost:8080/api/filiais/1`<br>Body:<br>`json { "nome": "Filial SP Atualizada" }`               |
+| **DELETE** | `/api/filiais/{id}` | Remove uma filial pelo ID                 | `DELETE http://localhost:8080/api/filiais/1`                                                                  |
+|   **GET**  | `/api/patios`       | Lista todos os pátios cadastrados         | `GET http://localhost:8080/api/patios`                                                                        |
+|   **GET**  | `/api/patios/{id}`  | Busca um pátio pelo ID                    | `GET http://localhost:8080/api/patios/1`                                                                      |
+|  **POST**  | `/api/patios`       | Cria um novo pátio vinculado a uma filial | `POST http://localhost:8080/api/patios`<br>Body:<br>`json { "nome": "Pátio Central", "filialId": 1 }`         |
+|   **PUT**  | `/api/patios/{id}`  | Atualiza informações de um pátio          | `PUT http://localhost:8080/api/patios/1`<br>Body:<br>`json { "nome": "Pátio Reformado" }`                     |
+| **DELETE** | `/api/patios/{id}`  | Remove um pátio pelo ID                   | `DELETE http://localhost:8080/api/patios/1`                                                                   |
 
 ---
 mcm-java/
