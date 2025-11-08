@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${isEdit ? 'Editar Filial' : 'Nova Filial'} + ' - MCM'">Filial - MCM</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="container">
+    <header class="header">
+        <div class="logo">
+            <h1>🏭 MCM</h1>
+            <p class="subtitle" th:text="${isEdit ? 'Editar Filial' : 'Nova Filial'}">Nova Filial</p>
+        </div>
+        <nav class="nav">
+            <a href="/" class="nav-link">Início</a>
+            <a href="/filiais" class="nav-link active">Filiais</a>
+            <a href="/patios" class="nav-link">Pátios</a>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <div class="page-header">
+            <h2 th:text="${isEdit ? 'Editar Filial' : 'Cadastrar Nova Filial'}">Cadastrar Nova Filial</h2>
+            <a href="/filiais" class="btn btn-secondary">← Voltar</a>
+        </div>
+
+        <div th:if="${error}" class="alert alert-error">
+            <span th:text="${error}"></span>
+        </div>
+
+        <div class="form-container">
+            <form th:action="${isEdit ? '/filiais/editar/' + filial.id : '/filiais/novo'}"
+                  method="post"
+                  class="form">
+
+                <div class="form-group">
+                    <label for="nome" class="form-label">Nome da Filial *</label>
+                    <input type="text"
+                           id="nome"
+                           name="nome"
+                           th:value="${filial.nome}"
+                           class="form-input"
+                           placeholder="Ex: Filial São Paulo"
+                           required>
+                </div>
+
+                <div class="form-group">
+                    <label for="pais" class="form-label">País *</label>
+                    <input type="text"
+                           id="pais"
+                           name="pais"
+                           th:value="${filial.pais}"
+                           class="form-input"
+                           placeholder="Ex: Brasil"
+                           required>
+                </div>
+
+                <div class="form-group">
+                    <label for="logradouro" class="form-label">Logradouro *</label>
+                    <input type="text"
+                           id="logradouro"
+                           name="logradouro"
+                           th:value="${filial.logradouro}"
+                           class="form-input"
+                           placeholder="Ex: Av. Paulista, 1000"
+                           required>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">
+                        <span th:text="${isEdit ? 'Atualizar' : 'Cadastrar'}">Cadastrar</span>
+                    </button>
+                    <a href="/filiais" class="btn btn-secondary">Cancelar</a>
+                </div>
+            </form>
+        </div>
+
+        <!-- Seção de pátios vinculados (se estiver editando) -->
+        <div th:if="${isEdit and filial.patioIds != null and !filial.patioIds.isEmpty()}" class="related-section">
+            <h3>Pátios Vinculados</h3>
+            <div class="info-box">
+                <p>
+                    Esta filial possui <strong th:text="${filial.patioIds.size()}">0</strong> pátio(s) vinculado(s).
+                </p>
+                <a href="/patios" class="btn btn-secondary">Ver Todos os Pátios</a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 MCM - Desenvolvido por Pedro Henrique Bergara e Henrique Izzi</p>
+    </footer>
+</div>
+</body>
+</html>

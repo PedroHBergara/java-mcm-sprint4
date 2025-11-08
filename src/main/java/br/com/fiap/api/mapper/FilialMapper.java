@@ -40,6 +40,7 @@ public class FilialMapper {
                 entity.getPais(),
                 entity.getLogradouro(),
                 patioIds
+
         );
     }
 }

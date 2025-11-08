@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCM - Mottu Courtyard Manager</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="container">
+    <header class="header">
+        <div class="logo">
+            <h1>🏭 MCM</h1>
+            <p class="subtitle">Mottu Courtyard Manager</p>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="welcome-section">
+            <h2>Bem-vindo ao Sistema de Gerenciamento</h2>
+            <p>Selecione uma opção abaixo para começar:</p>
+        </div>
+
+        <div class="menu-grid">
+            <a href="/filiais" class="menu-card">
+                <div class="card-icon">🏢</div>
+                <h3>Gerenciar Filiais</h3>
+                <p>Cadastre, edite e visualize as filiais da empresa</p>
+                <span class="card-arrow">→</span>
+            </a>
+
+            <a href="/patios" class="menu-card">
+                <div class="card-icon">🏗️</div>
+                <h3>Gerenciar Pátios</h3>
+                <p>Cadastre, edite e visualize os pátios das filiais</p>
+                <span class="card-arrow">→</span>
+            </a>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 MCM - Desenvolvido por Pedro Henrique Bergara e Henrique Izzi</p>
+    </footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciar Filiais - MCM</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="container">
+    <header class="header">
+        <div class="logo">
+            <h1>🏭 MCM</h1>
+            <p class="subtitle">Gerenciar Filiais</p>
+        </div>
+        <nav class="nav">
+            <a href="/" class="nav-link">Início</a>
+            <a href="/filiais" class="nav-link active">Filiais</a>
+            <a href="/patios" class="nav-link">Pátios</a>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <div class="page-header">
+            <h2>Lista de Filiais</h2>
+            <a href="/filiais/novo" class="btn btn-primary">+ Nova Filial</a>
+        </div>
+
+        <div th:if="${message}" class="alert alert-success">
+            <span th:text="${message}"></span>
+        </div>
+
+        <div th:if="${error}" class="alert alert-error">
+            <span th:text="${error}"></span>
+        </div>
+
+        <div class="table-container">
+            <table class="data-table">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>País</th>
+                    <th>Logradouro</th>
+                    <th>Qtd. Pátios</th>
+                    <th class="actions-column">Ações</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:if="${filiais == null or filiais.isEmpty()}">
+                    <td colspan="6" class="empty-message">
+                        Nenhuma filial cadastrada. Clique em "Nova Filial" para começar.
+                    </td>
+                </tr>
+                <tr th:each="filial : ${filiais}">
+                    <td th:text="${filial.id}">1</td>
+                    <td th:text="${filial.nome}">Filial São Paulo</td>
+                    <td th:text="${filial.pais}">Brasil</td>
+                    <td th:text="${filial.logradouro}">Av. Paulista, 1000</td>
+                    <td th:text="${filial.patioIds != null ? filial.patioIds.size() : 0}">3</td>
+                    <td class="actions-column">
+                        <a th:href="@{/filiais/editar/{id}(id=${filial.id})}" class="btn btn-small btn-edit">Editar</a>
+                        <a th:href="@{/filiais/deletar/{id}(id=${filial.id})}"
+                           class="btn btn-small btn-delete"
+                           onclick="return confirm('Tem certeza que deseja excluir esta filial?')">Excluir</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 MCM - Desenvolvido por Pedro Henrique Bergara e Henrique Izzi</p>
+    </footer>
+</div>
+</body>
+</html>

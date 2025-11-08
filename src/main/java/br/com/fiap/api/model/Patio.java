@@ -1,6 +1,7 @@
 package br.com.fiap.api.model;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 
@@ -16,6 +17,7 @@ public class Patio {
 
     @ManyToOne(fetch = FetchType.LAZY) // Adicionado FetchType.LAZY
     @JoinColumn(name = "filial_id", nullable = false) // Adicionado nullable = false
+    @JsonBackReference
     private br.com.fiap.api.model.Filial filial;
 
     public Long getId() {

@@ -1,5 +1,6 @@
 package br.com.fiap.api.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ public class Filial {
     private String logradouro;
 
     @OneToMany(mappedBy = "filial", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY) // Adicionado FetchType.LAZY
+    @JsonManagedReference
     private List<Patio> patios = new ArrayList<>(); // Inicializar a lista
 
     public Long getId() {

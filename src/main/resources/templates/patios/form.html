@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title th:text="${isEdit ? 'Editar Pátio' : 'Novo Pátio'} + ' - MCM'">Pátio - MCM</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="container">
+  <header class="header">
+    <div class="logo">
+      <h1>🏭 MCM</h1>
+      <p class="subtitle" th:text="${isEdit ? 'Editar Pátio' : 'Novo Pátio'}">Novo Pátio</p>
+    </div>
+    <nav class="nav">
+      <a href="/" class="nav-link">Início</a>
+      <a href="/filiais" class="nav-link">Filiais</a>
+      <a href="/patios" class="nav-link active">Pátios</a>
+    </nav>
+  </header>
+
+  <main class="main-content">
+    <div class="page-header">
+      <h2 th:text="${isEdit ? 'Editar Pátio' : 'Cadastrar Novo Pátio'}">Cadastrar Novo Pátio</h2>
+      <a href="/patios" class="btn btn-secondary">← Voltar</a>
+    </div>
+
+    <div th:if="${error}" class="alert alert-error">
+      <span th:text="${error}"></span>
+    </div>
+
+    <div class="form-container">
+      <form th:action="${isEdit ? '/patios/editar/' + patio.id : '/patios/novo'}"
+            method="post"
+            class="form">
+
+        <div class="form-group">
+          <label for="numPatio" class="form-label">Número do Pátio *</label>
+          <input type="number"
+                 id="numPatio"
+                 name="numPatio"
+                 th:value="${patio.numPatio}"
+                 class="form-input"
+                 placeholder="Ex: 101"
+                 min="1"
+                 required>
+        </div>
+
+        <div class="form-group">
+          <label for="qtdMotos" class="form-label">Quantidade de Motos *</label>
+          <input type="number"
+                 id="qtdMotos"
+                 name="qtdMotos"
+                 th:value="${patio.qtdMotos}"
+                 class="form-input"
+                 placeholder="Ex: 15"
+                 min="0"
+                 required>
+        </div>
+
+        <div class="form-group">
+          <label for="filialId" class="form-label">Filial *</label>
+          <select id="filialId"
+                  name="filialId"
+                  class="form-input"
+                  required>
+            <option value="">Selecione uma filial</option>
+            <option th:each="filial : ${filiais}"
+                    th:value="${filial.id}"
+                    th:text="${filial.nome + ' - ' + filial.pais}"
+                    th:selected="${patio.filialId == filial.id}">
+              Filial São Paulo - Brasil
+            </option>
+          </select>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary">
+            <span th:text="${isEdit ? 'Atualizar' : 'Cadastrar'}">Cadastrar</span>
+          </button>
+          <a href="/patios" class="btn btn-secondary">Cancelar</a>
+        </div>
+      </form>
+    </div>
+
+    <!-- Informações da filial (se estiver editando) -->
+    <div th:if="${isEdit and filialInfo != null}" class="related-section">
+      <h3>Informações da Filial</h3>
+      <div class="info-card">
+        <div class="info-row">
+          <span class="info-label">Nome:</span>
+          <span class="info-value" th:text="${filialInfo.nome}">Filial São Paulo</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">País:</span>
+          <span class="info-value" th:text="${filialInfo.pais}">Brasil</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Logradouro:</span>
+          <span class="info-value" th:text="${filialInfo.logradouro}">Av. Paulista, 1000</span>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2024 MCM - Desenvolvido por Pedro Henrique Bergara e Henrique Izzi</p>
+  </footer>
+</div>
+</body>
+</html>

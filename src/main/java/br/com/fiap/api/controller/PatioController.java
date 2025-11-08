@@ -25,7 +25,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import java.net.URI;
 
 @RestController
-@RequestMapping("/patios" )
+@RequestMapping("/api/patios" )
 @Tag(name = "Patios", description = "Endpoints para gerenciamento de Pátios")
 public class PatioController {
 

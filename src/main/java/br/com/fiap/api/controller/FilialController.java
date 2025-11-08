@@ -16,7 +16,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.net.URI;
 
 @RestController
-@RequestMapping("/filiais")
+@RequestMapping("/api/filiais")
 public class FilialController {
 
     private final FilialService filialService;

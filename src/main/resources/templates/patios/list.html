@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerenciar Pátios - MCM</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="container">
+  <header class="header">
+    <div class="logo">
+      <h1>🏭 MCM</h1>
+      <p class="subtitle">Gerenciar Pátios</p>
+    </div>
+    <nav class="nav">
+      <a href="/" class="nav-link">Início</a>
+      <a href="/filiais" class="nav-link">Filiais</a>
+      <a href="/patios" class="nav-link active">Pátios</a>
+    </nav>
+  </header>
+
+  <main class="main-content">
+    <div class="page-header">
+      <h2>Lista de Pátios</h2>
+      <a href="/patios/novo" class="btn btn-primary">+ Novo Pátio</a>
+    </div>
+
+    <div th:if="${message}" class="alert alert-success">
+      <span th:text="${message}"></span>
+    </div>
+
+    <div th:if="${error}" class="alert alert-error">
+      <span th:text="${error}"></span>
+    </div>
+
+    <div class="table-container">
+      <table class="data-table">
+        <thead>
+        <tr>
+          <th>ID</th>
+          <th>Número do Pátio</th>
+          <th>Qtd. Motos</th>
+          <th>Filial</th>
+          <th>País</th>
+          <th class="actions-column">Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${patios == null or patios.isEmpty()}">
+          <td colspan="6" class="empty-message">
+            Nenhum pátio cadastrado. Clique em "Novo Pátio" para começar.
+          </td>
+        </tr>
+        <tr th:each="patio : ${patios}">
+          <td th:text="${patio.id}">1</td>
+          <td th:text="${patio.numPatio}">101</td>
+          <td th:text="${patio.qtdMotos}">15</td>
+          <td>
+            <a th:href="@{/filiais/editar/{id}(id=${patio.filialId})}" class="btn-link">
+              Filial #<span th:text="${patio.filialId}"></span>
+            </a>
+          </td>
+          <td>-</td>
+          <td class="actions-column">
+            <a th:href="@{/patios/editar/{id}(id=${patio.id})}" class="btn btn-small btn-edit">Editar</a>
+            <a th:href="@{/patios/deletar/{id}(id=${patio.id})}"
+               class="btn btn-small btn-delete"
+               onclick="return confirm('Tem certeza que deseja excluir este pátio?')">Excluir</a>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2024 MCM - Desenvolvido por Pedro Henrique Bergara e Henrique Izzi</p>
+  </footer>
+</div>
+</body>
+</html>
